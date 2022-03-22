@@ -10,6 +10,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.MenuBar;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -17,7 +19,14 @@ import javafx.stage.Stage;
 public class AddressBookController implements Initializable {
     
     @FXML private MenuBar menuBar;
+    @FXML private Button hejbutton;
+    @FXML private CheckBox hejcheckbox;
     
+    private void loadWhenClicked(ActionEvent event){
+        Button button = (Button) event.getSource();
+        System.out.println(button.getText()); // prints out button's text
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
