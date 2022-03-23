@@ -11,21 +11,26 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class AddressBookController implements Initializable {
     
     @FXML private MenuBar menuBar;
-    @FXML private Button hejbutton;
-    @FXML private CheckBox hejcheckbox;
-    
-    private void loadWhenClicked(ActionEvent event){
-        Button button = (Button) event.getSource();
-        System.out.println(button.getText()); // prints out button's text
-    }
+    @FXML private Button newButton;
+    @FXML private Button deleteButton;
+    @FXML private ListView contactsListView;
+    @FXML private TextField fnameTextField;
+    @FXML private TextField lnameTextField;
+    @FXML private TextField phoneTextField;
+    @FXML private TextField emailTextField;
+    @FXML private TextField addressTextField;
+    @FXML private TextField postcodeTextField;
+    @FXML private TextField cityTextField;
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
