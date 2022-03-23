@@ -17,6 +17,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import se.chalmers.cse.dat215.lab1.Presenter;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 
 public class AddressBookController implements Initializable {
     
@@ -45,10 +47,44 @@ public class AddressBookController implements Initializable {
         addressTextField,
         postcodeTextField,
         cityTextField);
-    
+
+        fnameTextField.focusedProperty().addListener(new TextFieldListener(fnameTextField));
+        lnameTextField.focusedProperty().addListener(new TextFieldListener(lnameTextField));
+        phoneTextField.focusedProperty().addListener(new TextFieldListener(phoneTextField));
+        emailTextField.focusedProperty().addListener(new TextFieldListener(emailTextField));
+        addressTextField.focusedProperty().addListener(new TextFieldListener(addressTextField));
+        postcodeTextField.focusedProperty().addListener(new TextFieldListener(postcodeTextField));
+        cityTextField.focusedProperty().addListener(new TextFieldListener(cityTextField));
+
         presenter.init();
+        contactsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                presenter.contactsListChanged();
+            }
+        });
     }
     
+    private class TextFieldListener implements ChangeListener<Boolean>{
+
+        private TextField textField;
+        
+        public TextFieldListener(TextField textField){
+            this.textField = textField;
+        }
+        
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            if(newValue){
+                presenter.textFieldFocusGained(textField);
+            
+            }
+            else{
+                presenter.textFieldFocusLost(textField);
+            }
+        }        
+    }
+
     @FXML 
     protected void newContactActionPerformed (ActionEvent event){
         presenter.newContact();
@@ -57,6 +93,11 @@ public class AddressBookController implements Initializable {
     @FXML 
     protected void removeContactActionPerformed (ActionEvent event){
         presenter.removeCurrentContact();
+    }
+
+    @FXML
+    protected void textFieldActionPerformed (ActionEvent event){
+        presenter.textFieldActionPerformed(event); 
     }
 
     @FXML 

@@ -141,13 +141,13 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <TextField fx:id="fnameTextField" layoutX="104.0" layoutY="38.0" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
-                  <TextField fx:id="lnameTextField" layoutX="104.0" layoutY="70.0" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
-                  <TextField fx:id="phoneTextField" layoutX="104.0" layoutY="102.0" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
-                  <TextField fx:id="emailTextField" layoutX="104.0" layoutY="134.0" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
-                  <TextField fx:id="addressTextField" layoutX="104.0" layoutY="166.0" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
-                  <TextField fx:id="postcodeTextField" layoutX="104.0" layoutY="198.0" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
-                  <TextField fx:id="cityTextField" layoutX="104.0" layoutY="230.0" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
+                  <TextField fx:id="fnameTextField" layoutX="104.0" layoutY="38.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
+                  <TextField fx:id="lnameTextField" layoutX="104.0" layoutY="70.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
+                  <TextField fx:id="phoneTextField" layoutX="104.0" layoutY="102.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
+                  <TextField fx:id="emailTextField" layoutX="104.0" layoutY="134.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
+                  <TextField fx:id="addressTextField" layoutX="104.0" layoutY="166.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
+                  <TextField fx:id="postcodeTextField" layoutX="104.0" layoutY="198.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
+                  <TextField fx:id="cityTextField" layoutX="104.0" layoutY="230.0" onAction="#textFieldActionPerformed" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
                </children>
             </AnchorPane>
         </items>
