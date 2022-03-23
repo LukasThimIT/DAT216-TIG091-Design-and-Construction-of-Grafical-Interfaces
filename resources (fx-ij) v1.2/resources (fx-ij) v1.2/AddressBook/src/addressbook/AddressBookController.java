@@ -16,6 +16,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import se.chalmers.cse.dat215.lab1.Presenter;
 
 public class AddressBookController implements Initializable {
     
@@ -31,12 +32,33 @@ public class AddressBookController implements Initializable {
     @FXML private TextField postcodeTextField;
     @FXML private TextField cityTextField;
 
+    Presenter presenter;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        presenter = new Presenter(
+        contactsListView,
+        fnameTextField,
+        lnameTextField,
+        phoneTextField,
+        emailTextField,
+        addressTextField,
+        postcodeTextField,
+        cityTextField);
+    
+        presenter.init();
     }
     
+    @FXML 
+    protected void newContactActionPerformed (ActionEvent event){
+        presenter.newContact();
+    }
+
+    @FXML 
+    protected void removeContactActionPerformed (ActionEvent event){
+        presenter.removeCurrentContact();
+    }
+
     @FXML 
     protected void openAboutActionPerformed(ActionEvent event) throws IOException{
     

@@ -7,11 +7,13 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="addressbook.AddressBookController">
@@ -20,6 +22,28 @@
         <menus>
           <Menu mnemonicParsing="false" text="%fileMenu.text">
             <items>
+                  <MenuItem mnemonicParsing="false" onAction="#newContactActionPerformed" text="New Contact">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/New16.gif" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#removeContactActionPerformed" text="Delete Contact">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/Delete16.gif" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
               <MenuItem mnemonicParsing="false" onAction="#closeApplicationActionPerformed" text="%exitApplicationMenuItem.text" />
             </items>
           </Menu>
@@ -32,7 +56,7 @@
       </MenuBar>
       <ToolBar layoutY="30.0" prefHeight="40.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <items>
-          <Button fx:id="newButton" mnemonicParsing="false">
+          <Button fx:id="newButton" mnemonicParsing="false" onAction="#newContactActionPerformed">
                <graphic>
                   <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -41,7 +65,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="deleteButton" mnemonicParsing="false">
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#removeContactActionPerformed">
                <graphic>
                   <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -61,7 +85,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="41.0" prefWidth="75.0" text="First Name:">
+                  <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="41.0" prefWidth="75.0" text="First Name:" AnchorPane.leftAnchor="14.0">
                      <padding>
                         <Insets bottom="15.0" />
                      </padding>
@@ -69,7 +93,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="73.0" prefWidth="75.0" text="Last Name:">
+                  <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="73.0" prefWidth="75.0" text="Last Name:" AnchorPane.leftAnchor="14.0">
                      <padding>
                         <Insets bottom="15.0" />
                      </padding>
@@ -77,7 +101,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="105.0" prefWidth="75.0" text="Phone:">
+                  <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="105.0" prefWidth="75.0" text="Phone:" AnchorPane.leftAnchor="14.0">
                      <padding>
                         <Insets bottom="15.0" />
                      </padding>
@@ -85,7 +109,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="137.0" prefWidth="75.0" text="Email:">
+                  <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="137.0" prefWidth="75.0" text="Email:" AnchorPane.leftAnchor="14.0">
                      <padding>
                         <Insets bottom="15.0" />
                      </padding>
@@ -93,7 +117,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="169.0" prefWidth="75.0" text="Address:">
+                  <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="169.0" prefWidth="75.0" text="Address:" AnchorPane.leftAnchor="14.0">
                      <padding>
                         <Insets bottom="15.0" />
                      </padding>
@@ -101,7 +125,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="201.0" prefWidth="75.0" text="Post Code:">
+                  <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="201.0" prefWidth="75.0" text="Post Code:" AnchorPane.leftAnchor="14.0">
                      <padding>
                         <Insets bottom="15.0" />
                      </padding>
@@ -109,7 +133,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="233.0" prefWidth="75.0" text="City:">
+                  <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="233.0" prefWidth="75.0" text="City:" AnchorPane.leftAnchor="14.0">
                      <padding>
                         <Insets bottom="15.0" />
                      </padding>
@@ -117,13 +141,13 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <TextField fx:id="fnameTextField" layoutX="104.0" layoutY="38.0" />
-                  <TextField fx:id="lnameTextField" layoutX="104.0" layoutY="70.0" />
-                  <TextField fx:id="phoneTextField" layoutX="104.0" layoutY="102.0" />
-                  <TextField fx:id="emailTextField" layoutX="104.0" layoutY="134.0" />
-                  <TextField fx:id="addressTextField" layoutX="104.0" layoutY="166.0" />
-                  <TextField fx:id="postcodeTextField" layoutX="104.0" layoutY="198.0" />
-                  <TextField fx:id="cityTextField" layoutX="104.0" layoutY="230.0" />
+                  <TextField fx:id="fnameTextField" layoutX="104.0" layoutY="38.0" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
+                  <TextField fx:id="lnameTextField" layoutX="104.0" layoutY="70.0" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
+                  <TextField fx:id="phoneTextField" layoutX="104.0" layoutY="102.0" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
+                  <TextField fx:id="emailTextField" layoutX="104.0" layoutY="134.0" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
+                  <TextField fx:id="addressTextField" layoutX="104.0" layoutY="166.0" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
+                  <TextField fx:id="postcodeTextField" layoutX="104.0" layoutY="198.0" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
+                  <TextField fx:id="cityTextField" layoutX="104.0" layoutY="230.0" prefHeight="25.0" prefWidth="295.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="18.0" />
                </children>
             </AnchorPane>
         </items>

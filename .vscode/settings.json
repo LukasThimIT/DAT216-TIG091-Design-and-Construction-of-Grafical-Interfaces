@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "resources (fx-ij) v1.2/resources (fx-ij) v1.2/AddressBook/lib/lab1fxbackend.jar"
+    ]
+}
