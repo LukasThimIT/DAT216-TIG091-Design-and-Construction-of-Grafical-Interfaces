@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<AnchorPane maxHeight="500.0" maxWidth="800.0" minHeight="500.0" minWidth="800.0" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="recipesearch.RecipeSearchController">
+   <children>
+      <StackPane layoutY="-1.0" prefHeight="505.0" prefWidth="805.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+            <SplitPane dividerPositions="0.35" prefHeight="160.0" prefWidth="200.0">
+              <items>
+                <AnchorPane fx:id="searchPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <Label layoutX="40.0" layoutY="141.0" text="Hitta ett recept som passar dig:" />
+                        <ComboBox fx:id="ingredientBox" layoutX="120.0" layoutY="192.0" prefWidth="150.0" />
+                        <ComboBox fx:id="cuisineBox" layoutX="120.0" layoutY="239.0" prefWidth="150.0" />
+                        <RadioButton fx:id="diffButtonAll" layoutX="120.0" layoutY="295.0" mnemonicParsing="false" text="Alla" />
+                        <RadioButton fx:id="diffButtonEasy" layoutX="120.0" layoutY="315.0" mnemonicParsing="false" text="Lätt" />
+                        <RadioButton fx:id="diffButtonMid" layoutX="120.0" layoutY="335.0" mnemonicParsing="false" text="Mellan" />
+                        <RadioButton fx:id="diffButtonHard" layoutX="120.0" layoutY="355.0" mnemonicParsing="false" text="Svår" />
+                        <Spinner fx:id="priceBox" layoutX="120.0" layoutY="396.0" prefHeight="26.0" prefWidth="124.0" />
+                        <Slider fx:id="priceSlider" layoutX="120.0" layoutY="448.0" max="150.0" min="10.0" prefHeight="16.0" prefWidth="150.0" snapToTicks="true" />
+                        <Label layoutX="19.0" layoutY="196.0" text="Huvudingrediens:" />
+                        <Label layoutX="89.0" layoutY="243.0" text="Kök:" />
+                        <Label layoutX="27.0" layoutY="295.0" text="Svårighetsgrad:" />
+                        <Label layoutX="65.0" layoutY="400.0" text="Maxpris:" />
+                        <Label layoutX="70.0" layoutY="447.0" text="Maxtid:" />
+                     </children>
+                  </AnchorPane>
+                <AnchorPane fx:id="recipeDetailPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <ScrollPane layoutX="-1.0" layoutY="-2.0" prefHeight="506.0" prefWidth="522.0">
+                           <content>
+                              <FlowPane fx:id="recipeResults" prefHeight="508.0" prefWidth="523.0" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
