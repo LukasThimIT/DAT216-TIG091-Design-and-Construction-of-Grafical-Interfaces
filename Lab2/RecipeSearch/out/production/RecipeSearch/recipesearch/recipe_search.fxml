@@ -20,16 +20,16 @@
          <children>
             <AnchorPane fx:id="detailPane" prefHeight="505.0" prefWidth="805.0" style="-fx-background-color: #FF0000;">
                <children>
-                  <Label fx:id="recipieDetailsName" layoutX="269.0" layoutY="51.0" prefHeight="17.0" prefWidth="150.0" text="Receptnamn">
+                  <Label fx:id="recipeDetailsLabel" layoutX="269.0" layoutY="51.0" prefHeight="17.0" prefWidth="150.0" text="Receptnamn">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="recipieDetailsImage" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="recipeDetailsImage" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                   <Button layoutX="739.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeRecipeView" text="Stäng" />
                </children>
             </AnchorPane>
-            <SplitPane fx:id="recipeDetailPane" dividerPositions="0.35" prefHeight="160.0" prefWidth="200.0">
+            <SplitPane fx:id="recipeSearchSplitPane" dividerPositions="0.35" prefHeight="160.0" prefWidth="200.0">
               <items>
                 <AnchorPane fx:id="searchPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
@@ -47,7 +47,7 @@
                         <Label layoutX="27.0" layoutY="295.0" text="Svårighetsgrad:" />
                         <Label layoutX="65.0" layoutY="400.0" text="Maxpris:" />
                         <Label layoutX="70.0" layoutY="447.0" text="Maxtid:" />
-                        <Label fx:id="timeSliderLabel" layoutX="236.0" layoutY="472.0" text="Label" />
+                        <Label fx:id="timeSliderLabel" layoutX="236.0" layoutY="472.0" text="10" />
                      </children>
                   </AnchorPane>
                 <AnchorPane fx:id="recipeDetailAnchor" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">

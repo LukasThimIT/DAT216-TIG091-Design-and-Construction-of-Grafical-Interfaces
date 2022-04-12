@@ -3,8 +3,7 @@ package recipesearch;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import se.chalmers.ait.dat215.lab2.Recipe;
@@ -15,11 +14,11 @@ public class RecipeListItem extends AnchorPane {
     private RecipeSearchController parentController;
     private Recipe recipe;
 
-    @FXML private ImageView listItemImage;
-    @FXML private Label listItemName;
+    @FXML private ImageView searchResultImg;
+    @FXML private Label searchResultLabel;
 
     @FXML
-        protected void onClick(Event event){
+    protected void onClick(Event event){
         parentController.openRecipeView(recipe);
     }
 
@@ -34,11 +33,12 @@ public class RecipeListItem extends AnchorPane {
             throw new RuntimeException(exception);
         }
 
+        //ÄR det nånting i denna som krånglar?
+
         this.recipe = recipe;
         this.parentController = recipeSearchController;
-        
-        listItemImage.setImage(recipe.getFXImage());
-        listItemName.setText(recipe.getName());
-    }
 
+        searchResultImg.setImage(recipe.getFXImage());
+        searchResultLabel.setText(recipe.getName());
+    }
 }

@@ -5,13 +5,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
+
 <fx:root onMouseClicked="#onClick" prefHeight="100.0" prefWidth="495.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="listItemImage" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="searchResultImg" fitHeight="76.0" fitWidth="78.0" layoutX="18.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../recipes/recipe1.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="listItemName" layoutX="214.0" layoutY="14.0" text="Stekt ägg" />
+      <Label fx:id="searchResultLabel" layoutX="108.0" layoutY="15.0" text="Stekt Ägg" />
    </children>
 </fx:root>

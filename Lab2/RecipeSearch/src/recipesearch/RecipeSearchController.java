@@ -10,14 +10,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Slider;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -41,21 +34,23 @@ public class RecipeSearchController implements Initializable {
     @FXML private Spinner priceBox;
     @FXML private Slider timeSlider;
     @FXML private Label timeSliderLabel;
-    @FXML private Label recipeDetailsName;
+    @FXML private Label recipeDetailsLabel;
     @FXML private ImageView recipeDetailsImage;
     @FXML private AnchorPane searchPane;
     @FXML private AnchorPane detailPane;
+    @FXML private SplitPane recipeSearchSplitPane;
 
     public RecipeSearchController() {
     }
 
     @FXML
      public void closeRecipeView(){
-        searchPane.toFront();
+        recipeSearchSplitPane.toFront();
     }
-    @FXML
+
      public void openRecipeView(Recipe recipe){
-        //populateRecipeDetailView(recipe);
+        System.out.println("openRecipeView");
+        populateRecipeDetailView(recipe);
         detailPane.toFront();
     }
 
@@ -145,7 +140,10 @@ public class RecipeSearchController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 //timeSliderLabel.setText(newValue.toString());
-
+                if(newValue.intValue() % 10 == 0) { //Detta är en idiotlösning
+                    String newValStr = newValue.toString(); //Varför måste man flytta ut detta föt att ddä ska funka?
+                    timeSliderLabel.setText(newValStr);
+                }
                 if(newValue != null && !newValue.equals(oldValue) && !timeSlider.isValueChanging()) {
                     RBC.setMaxTime(newValue.intValue());
                     updateRecipeList();
@@ -156,7 +154,7 @@ public class RecipeSearchController implements Initializable {
     }
 
     private void populateRecipeDetailView(Recipe recipe){
-        recipeDetailsName.setText(recipe.getName());
+        recipeDetailsLabel.setText(recipe.getName());
         recipeDetailsImage.setImage(recipe.getFXImage());
     }
 
