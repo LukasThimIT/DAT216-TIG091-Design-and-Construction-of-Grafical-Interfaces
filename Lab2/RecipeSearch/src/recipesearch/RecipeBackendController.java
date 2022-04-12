@@ -11,24 +11,24 @@ public class RecipeBackendController {
     String country;
     String ingredient;
     String diff;
-    int price;
-    int time;
+    int price = 0;
+    int time = 0;
     public List<Recipe> getRecipes() {
         return db.search(new SearchFilter(diff, time, country, price, ingredient));
     }
     public void setCuisine(String cuisine){
-        String country = cuisine;
+        country = cuisine;
     }
     public void setMainIngredient(String mainIngredient){
-        String ingredient = mainIngredient;
+        ingredient = mainIngredient;
     }
     public void setDifficulty(String difficulty){
-        String diff = difficulty;
+        diff = difficulty;
     }
     public void setMaxPrice(int maxPrice){
-        int price = maxPrice;
+        price = maxPrice;
     }
     public void setMaxTime(int maxTime){
-        int time = maxTime;
+        time = maxTime;
     }
 }
