@@ -1,5 +1,6 @@
 
 package recipesearch;
+import recipesearch.RecipeListItem;
 
 import java.net.URL;
 import java.util.List;
@@ -36,7 +37,7 @@ public class RecipeSearchController implements Initializable {
     @FXML private Label timeSliderLabel;
     @FXML private Label recipeDetailsLabel;
     @FXML private ImageView recipeDetailsImage;
-    @FXML private AnchorPane searchPane;
+    @FXML private SplitPane searchPane;
     @FXML private AnchorPane detailPane;
     @FXML private SplitPane recipeSearchSplitPane;
 
@@ -65,6 +66,7 @@ public class RecipeSearchController implements Initializable {
 
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                    System.out.println(newValue);
                     RBC.setMainIngredient(newValue);
                     updateRecipeList();
             }
@@ -77,8 +79,9 @@ public class RecipeSearchController implements Initializable {
 
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                            RBC.setCuisine(newValue);
-                            updateRecipeList();
+                    System.out.println(newValue);
+                    RBC.setCuisine(newValue);
+                    updateRecipeList();
             }
         });
 
@@ -111,6 +114,7 @@ public class RecipeSearchController implements Initializable {
             public void changed(ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue) {
         
                 if (priceBox.getValue() != null) {
+                    System.out.println(newValue);
                     RBC.setMaxPrice(newValue);
                     updateRecipeList();
                 }
@@ -145,6 +149,7 @@ public class RecipeSearchController implements Initializable {
                     timeSliderLabel.setText(newValStr);
                 }
                 if(newValue != null && !newValue.equals(oldValue) && !timeSlider.isValueChanging()) {
+                    System.out.println(newValue);
                     RBC.setMaxTime(newValue.intValue());
                     updateRecipeList();
                 }
@@ -168,5 +173,4 @@ public class RecipeSearchController implements Initializable {
         }
         //recipeResults.getChildren().addAll(RBC.getRecipes());
     }
-
 }

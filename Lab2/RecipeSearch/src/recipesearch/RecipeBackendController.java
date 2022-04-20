@@ -14,7 +14,8 @@ public class RecipeBackendController {
     int price = 0;
     int time = 0;
     public List<Recipe> getRecipes() {
-        return db.search(new SearchFilter(diff, time, country, price, ingredient));
+        //System.out.println(db.search(new SearchFilter(diff, 10, "Sverige", 100, "Kött")));
+        return db.search(new SearchFilter(diff, time, "Sverige", price, ingredient));
     }
     public void setCuisine(String cuisine){
         country = cuisine;
@@ -23,6 +24,9 @@ public class RecipeBackendController {
         ingredient = mainIngredient;
     }
     public void setDifficulty(String difficulty){
+        if(difficulty == "Alla"){
+            diff = null;
+        }
         diff = difficulty;
     }
     public void setMaxPrice(int maxPrice){
