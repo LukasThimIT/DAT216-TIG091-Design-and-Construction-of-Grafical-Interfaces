@@ -8,7 +8,6 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
@@ -17,7 +16,7 @@
 
 <AnchorPane maxHeight="500.0" maxWidth="800.0" minHeight="500.0" minWidth="800.0" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="recipesearch.RecipeSearchController">
    <children>
-      <StackPane layoutY="-1.0" prefHeight="505.0" prefWidth="805.0">
+      <StackPane layoutY="-1.0" prefHeight="505.0" prefWidth="805.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane fx:id="detailPane" prefHeight="505.0" prefWidth="805.0" style="-fx-background-color: #FF0000;">
                <children>
@@ -27,12 +26,12 @@
                      </font>
                   </Label>
                   <ImageView fx:id="recipeDetailsImage" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button layoutX="739.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeRecipeView" text="Stäng" />
+                  <Button layoutX="739.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeRecipeView" text="Stäng" AnchorPane.rightAnchor="11.5" AnchorPane.topAnchor="14.0" />
                </children>
             </AnchorPane>
             <SplitPane fx:id="recipeSearchSplitPane" dividerPositions="0.35" prefHeight="160.0" prefWidth="200.0">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                <AnchorPane maxWidth="300.0" minHeight="0.0" minWidth="276.0" prefHeight="160.0" prefWidth="276.0">
                      <children>
                         <Label layoutX="40.0" layoutY="141.0" text="Hitta ett recept som passar dig:" />
                         <ComboBox fx:id="ingredientBox" layoutX="120.0" layoutY="192.0" prefWidth="150.0" />
@@ -42,18 +41,18 @@
                         <RadioButton fx:id="diffButtonMid" layoutX="120.0" layoutY="335.0" mnemonicParsing="false" text="Mellan" />
                         <RadioButton fx:id="diffButtonHard" layoutX="120.0" layoutY="355.0" mnemonicParsing="false" text="Svår" />
                         <Spinner fx:id="priceBox" editable="true" layoutX="120.0" layoutY="396.0" prefHeight="26.0" prefWidth="124.0" />
-                        <Slider fx:id="timeSlider" layoutX="120.0" layoutY="448.0" max="150.0" min="10.0" prefHeight="16.0" prefWidth="150.0" snapToTicks="true" />
+                        <Slider fx:id="timeSlider" layoutX="120.0" layoutY="448.0" majorTickUnit="10.0" max="150.0" min="10.0" minorTickCount="0" prefHeight="16.0" prefWidth="150.0" snapToTicks="true" />
                         <Label layoutX="19.0" layoutY="196.0" text="Huvudingrediens:" />
                         <Label layoutX="89.0" layoutY="243.0" text="Kök:" />
                         <Label layoutX="27.0" layoutY="295.0" text="Svårighetsgrad:" />
                         <Label layoutX="65.0" layoutY="400.0" text="Maxpris:" />
                         <Label layoutX="70.0" layoutY="447.0" text="Maxtid:" />
-                        <Label fx:id="timeSliderLabel" layoutX="236.0" layoutY="472.0" text="10" />
+                        <Label fx:id="timeSliderLabel" layoutX="210.0" layoutY="463.0" text="10 min" />
                      </children>
                   </AnchorPane>
                 <AnchorPane fx:id="recipeDetailAnchor" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <ScrollPane layoutX="-1.0" layoutY="-2.0" prefHeight="506.0" prefWidth="522.0">
+                        <ScrollPane layoutX="-1.0" layoutY="-2.0" prefHeight="506.0" prefWidth="522.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <content>
                               <FlowPane fx:id="recipeResults" prefHeight="508.0" prefWidth="523.0" />
                            </content>

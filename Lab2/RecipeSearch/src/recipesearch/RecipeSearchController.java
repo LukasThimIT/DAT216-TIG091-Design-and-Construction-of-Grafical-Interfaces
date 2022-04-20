@@ -3,7 +3,9 @@ package recipesearch;
 import recipesearch.RecipeListItem;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
@@ -23,7 +25,9 @@ public class RecipeSearchController implements Initializable {
 
     RecipeDatabase db = RecipeDatabase.getSharedInstance();
     RecipeBackendController RBC = new RecipeBackendController();
-    private RecipeSearchController parentController; //iffy
+    //private RecipeSearchController parentController; //iffy
+
+
     
     @FXML private FlowPane recipeResults;
     @FXML private ComboBox ingredientBox;
@@ -41,22 +45,27 @@ public class RecipeSearchController implements Initializable {
     @FXML private AnchorPane detailPane;
     @FXML private SplitPane recipeSearchSplitPane;
 
-    public RecipeSearchController() {
-    }
+        @FXML
+        public void closeRecipeView () {
+            recipeSearchSplitPane.toFront();
+        }
 
-    @FXML
-     public void closeRecipeView(){
-        recipeSearchSplitPane.toFront();
-    }
+        public void openRecipeView (Recipe recipe){
 
-     public void openRecipeView(Recipe recipe){
-        System.out.println("openRecipeView");
-        populateRecipeDetailView(recipe);
-        detailPane.toFront();
-    }
+            // System.out.println("openRecipeView");
+            populateRecipeDetailView(recipe);
+            detailPane.toFront();
+        }
 
+    private Map<String, RecipeListItem> recipeListItemMap = new HashMap<String, RecipeListItem>();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        for (Recipe recipe : RBC.getRecipes()) {
+            RecipeListItem recipeListItem = new RecipeListItem(recipe, this);
+            recipeListItemMap.put(recipe.getName(), recipeListItem);
+        }
+
         updateRecipeList();
         
         //combobox main ingredient
@@ -66,7 +75,7 @@ public class RecipeSearchController implements Initializable {
 
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    System.out.println(newValue);
+                    //System.out.println(newValue);
                     RBC.setMainIngredient(newValue);
                     updateRecipeList();
             }
@@ -79,7 +88,7 @@ public class RecipeSearchController implements Initializable {
 
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    System.out.println(newValue);
+                    //System.out.println(newValue);
                     RBC.setCuisine(newValue);
                     updateRecipeList();
             }
@@ -107,14 +116,14 @@ public class RecipeSearchController implements Initializable {
         });
 
         //Spinner
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10000, 20, 5); 
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10000, 20, 5);
         priceBox.setValueFactory(valueFactory);
         priceBox.valueProperty().addListener(new ChangeListener<Integer>() {
             @Override
             public void changed(ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue) {
         
                 if (priceBox.getValue() != null) {
-                    System.out.println(newValue);
+                    //System.out.println(newValue);
                     RBC.setMaxPrice(newValue);
                     updateRecipeList();
                 }
@@ -124,16 +133,18 @@ public class RecipeSearchController implements Initializable {
 
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-        
+
                 if(newValue){
                     //focusgained - do nothing
                 }
                 else{
                     Integer value = Integer.valueOf(priceBox.getEditor().getText());
-                    RBC.setMaxPrice(value);
-                    updateRecipeList();
+                    if (value > 0) {
+                        RBC.setMaxPrice(value);
+                        updateRecipeList();
+                    }
                 }
-        
+
             }
         });
         
@@ -144,12 +155,8 @@ public class RecipeSearchController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 //timeSliderLabel.setText(newValue.toString());
-                if(newValue.intValue() % 10 == 0) { //Detta är en idiotlösning
-                    String newValStr = newValue.toString(); //Varför måste man flytta ut detta föt att ddä ska funka?
-                    timeSliderLabel.setText(newValStr);
-                }
                 if(newValue != null && !newValue.equals(oldValue) && !timeSlider.isValueChanging()) {
-                    System.out.println(newValue);
+                    timeSliderLabel.setText(newValue.intValue() + " min");
                     RBC.setMaxTime(newValue.intValue());
                     updateRecipeList();
                 }
@@ -168,8 +175,8 @@ public class RecipeSearchController implements Initializable {
         List<Recipe> recipes = RBC.getRecipes();
         for (Recipe recipe : recipes) {
             //System.out.println(recipe);
-            RecipeListItem newItem = new RecipeListItem(recipe, parentController); //iffy
-            recipeResults.getChildren().add(newItem);
+            //RecipeListItem newItem = new RecipeListItem(recipe, this); //iffy
+            recipeResults.getChildren().add(recipeListItemMap.get(recipe.getName()));
         }
         //recipeResults.getChildren().addAll(RBC.getRecipes());
     }

@@ -19,6 +19,8 @@ public class RecipeListItem extends AnchorPane {
 
     @FXML
     protected void onClick(Event event){
+        //System.out.print("I onClick nu"); //Denna printas
+        if (parentController == null) System.out.println("null");
         parentController.openRecipeView(recipe);
     }
 
