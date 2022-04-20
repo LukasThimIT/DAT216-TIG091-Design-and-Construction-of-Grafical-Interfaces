@@ -59,7 +59,7 @@
                         <Label fx:id="timeSliderLabel" layoutX="236.0" layoutY="472.0" text="Label" />
                      </children>
                   </AnchorPane>
-                <AnchorPane fx:id="recipeDetailPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                <AnchorPane fx:id="recipeDetailAnchor" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
                         <ScrollPane layoutX="-1.0" layoutY="-2.0" prefHeight="506.0" prefWidth="522.0">
                            <content>

@@ -47,15 +47,26 @@ public class RecipeSearchController implements Initializable {
     @FXML private ImageView recipeDetailsImage;
     @FXML private SplitPane searchPane;
     @FXML private AnchorPane detailPane;
-    
-    
+
+    public RecipeSearchController() {
+    }
+
+    @FXML
+     public void closeRecipeView(){
+        searchPane.toFront();
+    }
+    @FXML
+     public void openRecipeView(Recipe recipe){
+        //populateRecipeDetailView(recipe);
+        detailPane.toFront();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         updateRecipeList();
         
         //combobox main ingredient
-        ingredientBox.getItems().addAll("Visa alla", "Kött", "Fisk", "Kyckling", "Vegitariskt");
+        ingredientBox.getItems().addAll("Visa alla", "Kött", "Fisk", "Kyckling", "Vegetariskt");
         ingredientBox.getSelectionModel().select("Visa alla");
         ingredientBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 
@@ -67,7 +78,7 @@ public class RecipeSearchController implements Initializable {
             }
         });
 
-            //cobobox Cuisine
+            //combobox Cuisine
             cuisineBox.getItems().addAll("Visa alla", "Sverige", "Grekland", "Indien", "Asien", "Afrika", "Frankrike");
             cuisineBox.getSelectionModel().select("Visa alla");
             cuisineBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -151,28 +162,18 @@ public class RecipeSearchController implements Initializable {
     }
 
     private void populateRecipeDetailView(Recipe recipe){
-        recipeDetailsName.setText(recipe.getName());       
-        recipeDetailsImage.setImage(recipe.getImage());
+        recipeDetailsName.setText(recipe.getName());
+        recipeDetailsImage.setImage(recipe.getFXImage());
     }
 
     private void updateRecipeList(){
-        recipeResults.getChildren().clear(); 
+        recipeResults.getChildren().clear();
         List<Recipe> recipes = RBC.getRecipes();
-        for(Recipe recipe : recipes){
+        for (Recipe recipe : recipes) {
             //System.out.println(recipe);
             RecipeListItem newItem = new RecipeListItem(recipe, parentController); //iffy
             recipeResults.getChildren().add(newItem);
         }
         //recipeResults.getChildren().addAll(RBC.getRecipes());
-    }
-    
-    @FXML
-    public void closeRecipeView(){
-        searchPane.toFront();
-    }
-    
-    public void openRecipeView(Recipe recipe){
-        populateRecipeDetailView(recipe);
-        detailPane.toFront();
     }
 }

@@ -11,8 +11,8 @@ public class RecipeBackendController {
     String country;
     String ingredient;
     String diff;
-    int price;
-    int time;
+    int price = 0;
+    int time = 0;
     public List<Recipe> getRecipes() {
         //System.out.println(db.search(new SearchFilter(diff, 10, "Sverige", 100, "Kött")));
         return db.search(new SearchFilter(diff, time, "Sverige", price, ingredient));
