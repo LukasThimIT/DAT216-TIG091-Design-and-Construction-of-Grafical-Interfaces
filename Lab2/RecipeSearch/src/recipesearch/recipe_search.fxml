@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
@@ -20,18 +21,26 @@
          <children>
             <AnchorPane fx:id="detailPane" prefHeight="505.0" prefWidth="805.0" style="-fx-background-color: #FF0000;">
                <children>
-                  <Label fx:id="recipieDetailsName" layoutX="269.0" layoutY="51.0" prefHeight="17.0" prefWidth="150.0" text="Receptnamn">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="recipieDetailsImage" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button layoutX="739.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeRecipeView" text="Stäng" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="recipieDetailsName" prefHeight="17.0" prefWidth="150.0" text="Receptnamn">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="recipieDetailsImage" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/icon_flag_sweden.png" />
+                           </image>
+                        </ImageView>
+                        <Button mnemonicParsing="false" onAction="#closeRecipeView" text="Stäng" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
-            <SplitPane dividerPositions="0.35" prefHeight="160.0" prefWidth="200.0">
+            <SplitPane fx:id="searchPane" dividerPositions="0.35" prefHeight="160.0" prefWidth="200.0">
               <items>
-                <AnchorPane fx:id="searchPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
                         <Label layoutX="40.0" layoutY="141.0" text="Hitta ett recept som passar dig:" />
                         <ComboBox fx:id="ingredientBox" layoutX="120.0" layoutY="192.0" prefWidth="150.0" />
@@ -40,7 +49,7 @@
                         <RadioButton fx:id="diffButtonEasy" layoutX="120.0" layoutY="315.0" mnemonicParsing="false" text="Lätt" />
                         <RadioButton fx:id="diffButtonMid" layoutX="120.0" layoutY="335.0" mnemonicParsing="false" text="Mellan" />
                         <RadioButton fx:id="diffButtonHard" layoutX="120.0" layoutY="355.0" mnemonicParsing="false" text="Svår" />
-                        <Spinner fx:id="priceBox" layoutX="120.0" layoutY="396.0" prefHeight="26.0" prefWidth="124.0" />
+                        <Spinner fx:id="priceBox" editable="true" layoutX="120.0" layoutY="396.0" prefHeight="26.0" prefWidth="124.0" />
                         <Slider fx:id="timeSlider" layoutX="120.0" layoutY="448.0" max="150.0" min="10.0" prefHeight="16.0" prefWidth="150.0" snapToTicks="true" />
                         <Label layoutX="19.0" layoutY="196.0" text="Huvudingrediens:" />
                         <Label layoutX="89.0" layoutY="243.0" text="Kök:" />

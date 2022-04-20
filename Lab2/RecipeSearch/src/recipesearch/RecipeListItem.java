@@ -18,10 +18,7 @@ public class RecipeListItem extends AnchorPane {
     @FXML private ImageView listItemImage;
     @FXML private Label listItemName;
 
-    @FXML
-        protected void onClick(Event event){
-        parentController.openRecipeView(recipe);
-    }
+    
 
     public RecipeListItem(Recipe recipe, RecipeSearchController recipeSearchController){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("recipe_listitem.fxml"));
@@ -40,5 +37,8 @@ public class RecipeListItem extends AnchorPane {
         listItemImage.setImage(recipe.getFXImage());
         listItemName.setText(recipe.getName());
     }
-
+    @FXML
+    protected void onClick(Event event){
+        parentController.openRecipeView(recipe);
+    }
 }

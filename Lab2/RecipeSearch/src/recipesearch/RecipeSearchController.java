@@ -1,5 +1,6 @@
 
 package recipesearch;
+import recipesearch.RecipeListItem;
 
 import java.net.URL;
 import java.util.List;
@@ -16,6 +17,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
@@ -43,18 +45,10 @@ public class RecipeSearchController implements Initializable {
     @FXML private Label timeSliderLabel;
     @FXML private Label recipeDetailsName;
     @FXML private ImageView recipeDetailsImage;
-    @FXML private AnchorPane searchPane;
+    @FXML private SplitPane searchPane;
     @FXML private AnchorPane detailPane;
     
-    @FXML
-    public void closeRecipeView(){
-        searchPane.toFront();
-    }
-    @FXML
-    public void openRecipeView(Recipe recipe){
-        populateRecipeDetailView(recipe);
-        detailPane.toFront();
-    }
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -67,8 +61,9 @@ public class RecipeSearchController implements Initializable {
 
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                            RBC.setMainIngredient(newValue);
-                            updateRecipeList();
+                    System.out.println(newValue);
+                    RBC.setMainIngredient(newValue);
+                    updateRecipeList();
             }
         });
 
@@ -79,8 +74,9 @@ public class RecipeSearchController implements Initializable {
 
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                            RBC.setMainIngredient(newValue);
-                            updateRecipeList();
+                    System.out.println(newValue);
+                    RBC.setCuisine(newValue);
+                    updateRecipeList();
             }
         });
 
@@ -113,6 +109,7 @@ public class RecipeSearchController implements Initializable {
             public void changed(ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue) {
         
                 if (priceBox.getValue() != null) {
+                    System.out.println(newValue);
                     RBC.setMaxPrice(newValue);
                     updateRecipeList();
                 }
@@ -144,6 +141,7 @@ public class RecipeSearchController implements Initializable {
                 //timeSliderLabel.setText(newValue.toString());
 
                 if(newValue != null && !newValue.equals(oldValue) && !timeSlider.isValueChanging()) {
+                    System.out.println(newValue);
                     RBC.setMaxTime(newValue.intValue());
                     updateRecipeList();
                 }
@@ -154,7 +152,7 @@ public class RecipeSearchController implements Initializable {
 
     private void populateRecipeDetailView(Recipe recipe){
         recipeDetailsName.setText(recipe.getName());       
-        recipeDetailsImage.setImage(recipe.getFXImage());
+        recipeDetailsImage.setImage(recipe.getImage());
     }
 
     private void updateRecipeList(){
@@ -166,5 +164,15 @@ public class RecipeSearchController implements Initializable {
             recipeResults.getChildren().add(newItem);
         }
         //recipeResults.getChildren().addAll(RBC.getRecipes());
+    }
+    
+    @FXML
+    public void closeRecipeView(){
+        searchPane.toFront();
+    }
+    
+    public void openRecipeView(Recipe recipe){
+        populateRecipeDetailView(recipe);
+        detailPane.toFront();
     }
 }
