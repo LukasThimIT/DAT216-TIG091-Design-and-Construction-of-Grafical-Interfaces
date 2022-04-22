@@ -1,5 +1,8 @@
 
 package recipesearch;
+import javafx.application.Platform;
+import javafx.scene.image.Image;
+import javafx.util.Callback;
 import recipesearch.RecipeListItem;
 
 import java.net.URL;
@@ -60,6 +63,10 @@ public class RecipeSearchController implements Initializable {
     private Map<String, RecipeListItem> recipeListItemMap = new HashMap<String, RecipeListItem>();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        populateMainIngredientComboBox();
+        populateCuisineComboBox();
+        Platform.runLater(()->ingredientBox.requestFocus());
 
         for (Recipe recipe : RBC.getRecipes()) {
             RecipeListItem recipeListItem = new RecipeListItem(recipe, this);
@@ -163,6 +170,116 @@ public class RecipeSearchController implements Initializable {
 
             }
         });
+    }
+
+    private void populateMainIngredientComboBox () {
+        Callback<ListView<String>, ListCell<String>> cellFactory = new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> p) {
+                return new ListCell<String>() {
+
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setText(item);
+                        if (item == null || empty) {
+                            setGraphic(null);
+                        } else {
+                            Image icon = null;
+                            String iconPath;
+                            try {
+                                switch (item) {
+
+                                    case "Kött":
+                                        iconPath = "RecipeSearch/resources/icon_main_meat.png";
+                                        icon = new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+                                        break;
+                                    case "Fisk":
+                                        iconPath = "RecipeSearch/resources/icon_main_fish.png";
+                                        icon = new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+                                        break;
+                                    case "Kyckling":
+                                        iconPath = "RecipeSearch/resources/icon_main_chicken.png";
+                                        icon = new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+                                        break;
+                                    case "Vegetariskt":
+                                        iconPath = "RecipeSearch/resources/icon_main_veg.png";
+                                        icon = new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+                                        break;
+                                }
+                            } catch (NullPointerException ex) {
+                                //This should never happen in this lab but could load a default image in case of a NullPointer
+                            }
+                            ImageView iconImageView = new ImageView(icon);
+                            iconImageView.setFitHeight(12);
+                            iconImageView.setPreserveRatio(true);
+                            setGraphic(iconImageView);
+                        }
+                    }
+                };
+            }
+        };
+        ingredientBox.setButtonCell(cellFactory.call(null));
+        ingredientBox.setCellFactory(cellFactory);
+    }
+
+    private void populateCuisineComboBox () {
+        Callback<ListView<String>, ListCell<String>> cellFactory = new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> p) {
+                return new ListCell<String>() {
+
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setText(item);
+                        if (item == null || empty) {
+                            setGraphic(null);
+                        } else {
+                            Image icon = null;
+                            String iconPath;
+                            try {
+                                switch (item) {
+
+                                    case "Sverige":
+                                        iconPath = "RecipeSearch/resources/icon_flag_sweden.png";
+                                        icon = new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+                                        break;
+                                    case "Grekland":
+                                        iconPath = "RecipeSearch/resources/icon_flag_greece.png";
+                                        icon = new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+                                        break;
+                                    case "Indien":
+                                        iconPath = "RecipeSearch/resources/icon_flag_india.png";
+                                        icon = new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+                                        break;
+                                    case "Asien":
+                                        iconPath = "RecipeSearch/resources/icon_flag_asia.png";
+                                        icon = new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+                                        break;
+                                    case "Afrika":
+                                        iconPath = "RecipeSearch/resources/icon_flag_africa.png";
+                                        icon = new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+                                        break;
+                                    case "Frankrike":
+                                        iconPath = "RecipeSearch/resources/icon_flag_france.png";
+                                        icon = new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+                                        break;
+                                }
+                            } catch (NullPointerException ex) {
+                                //This should never happen in this lab but could load a default image in case of a NullPointer
+                            }
+                            ImageView iconImageView = new ImageView(icon);
+                            iconImageView.setFitHeight(12);
+                            iconImageView.setPreserveRatio(true);
+                            setGraphic(iconImageView);
+                        }
+                    }
+                };
+            }
+        };
+        cuisineBox.setButtonCell(cellFactory.call(null));
+        cuisineBox.setCellFactory(cellFactory);
     }
 
     private void populateRecipeDetailView(Recipe recipe){
