@@ -154,6 +154,7 @@ public class RecipeSearchController implements Initializable {
                 if (difficultyToggleGroup.getSelectedToggle() != null) {
                     RadioButton selected = (RadioButton) difficultyToggleGroup.getSelectedToggle();
                     RBC.setDifficulty(selected.getText());
+                    System.out.println(selected.getText());
                     updateRecipeList();
                 }
             }
@@ -432,7 +433,7 @@ public class RecipeSearchController implements Initializable {
         for(Ingredient ingredient : recipe.getIngredients()){
             ingredientsString = ingredientsString + "\n" + ingredient.getAmount() + " " + ingredient.getUnit() + " " + ingredient.getName();
         }
-        System.out.println(ingredientsString);
+        //System.out.println(ingredientsString);
         return ingredientsString;
     }
 

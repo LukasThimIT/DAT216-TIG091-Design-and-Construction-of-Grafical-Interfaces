@@ -73,7 +73,7 @@
                            </font>
                         </Label>
                         <Label fx:id="recipeServings" layoutX="14.0" layoutY="245.0" prefHeight="20.0" prefWidth="200.0" styleClass="text-larger" text="4 portioner" wrapText="true" />
-                        <TextArea fx:id="recipeIngredients" editable="false" layoutX="14.0" layoutY="265.0" prefHeight="184.0" prefWidth="180.0" styleClass="text-smaller" text="hashdj" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="271.0" />
+                        <TextArea fx:id="recipeIngredients" editable="false" layoutX="11.0" layoutY="263.0" prefHeight="184.0" prefWidth="180.0" styleClass="text-smaller" text="hashdj" wrapText="true" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="263.0" />
                      </children>
                   </AnchorPane>
                </children>
@@ -86,9 +86,9 @@
                         <ComboBox fx:id="ingredientBox" layoutX="120.0" layoutY="192.0" prefWidth="150.0" styleClass="text-larger" />
                         <ComboBox fx:id="cuisineBox" layoutX="120.0" layoutY="239.0" prefWidth="150.0" styleClass="text-larger" />
                         <RadioButton fx:id="diffButtonAll" layoutX="120.0" layoutY="295.0" mnemonicParsing="false" styleClass="text-smaller" text="Alla" />
-                        <RadioButton fx:id="diffButtonEasy" layoutX="120.0" layoutY="315.0" mnemonicParsing="false" styleClass="text-smaller" text="                      Lätt" textAlignment="RIGHT" />
-                        <RadioButton fx:id="diffButtonMid" layoutX="120.0" layoutY="335.0" mnemonicParsing="false" styleClass="text-smaller" text="                      Mellan" />
-                        <RadioButton fx:id="diffButtonHard" layoutX="120.0" layoutY="355.0" mnemonicParsing="false" styleClass="text-smaller" text="                      Svår" />
+                        <RadioButton fx:id="diffButtonEasy" alignment="CENTER_RIGHT" layoutX="120.0" layoutY="315.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="96.0" styleClass="text-smaller" text="Lätt" textAlignment="RIGHT" />
+                        <RadioButton fx:id="diffButtonMid" alignment="CENTER_RIGHT" layoutX="120.0" layoutY="335.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="112.0" styleClass="text-smaller" text="Mellan" />
+                        <RadioButton fx:id="diffButtonHard" alignment="CENTER_RIGHT" graphicTextGap="0.0" layoutX="120.0" layoutY="355.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="99.0" styleClass="text-smaller" text="Svår" />
                         <Spinner fx:id="priceBox" editable="true" layoutX="120.0" layoutY="396.0" prefHeight="26.0" prefWidth="124.0" styleClass="text-larger" />
                         <Slider fx:id="timeSlider" layoutX="120.0" layoutY="448.0" majorTickUnit="10.0" max="150.0" min="10.0" minorTickCount="0" prefHeight="16.0" prefWidth="150.0" snapToTicks="true" styleClass="text-normal" />
                         <Label layoutX="15.0" layoutY="196.0" styleClass="text-normal" text="Huvudingrediens: " />
