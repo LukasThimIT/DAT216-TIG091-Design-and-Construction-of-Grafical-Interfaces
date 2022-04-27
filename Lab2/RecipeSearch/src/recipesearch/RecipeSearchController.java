@@ -6,6 +6,7 @@ import javafx.util.Callback;
 import recipesearch.RecipeListItem;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import se.chalmers.ait.dat215.lab2.Ingredient;
 import se.chalmers.ait.dat215.lab2.Recipe;
 import se.chalmers.ait.dat215.lab2.RecipeDatabase;
 import recipesearch.RecipeBackendController;
@@ -57,7 +59,9 @@ public class RecipeSearchController implements Initializable {
     @FXML private Label recipeTime;
     @FXML private Label recipePrice;
     @FXML private Label recipeDescription;
+    @FXML private Label recipeServings;
     @FXML private TextArea recipeInstructions;
+    @FXML private TextArea recipeIngredients;
 
         @FXML
         public void closeRecipeView () {
@@ -414,10 +418,22 @@ public class RecipeSearchController implements Initializable {
         recipeFlagImg.setImage(getCuisineFlag(recipe.getCuisine()));
         recipeDifficultyImg.setImage(getDifficulty(recipe.getDifficulty()));
         recipeIngredientImg.setImage(getIngredient(recipe.getMainIngredient()));
-        System.out.println(Integer.toString(recipe.getPrice()));
-        recipePrice.setText(Integer.toString(recipe.getPrice()));
-        recipeTime.setText(Integer.toString(recipe.getTime()));
-        recipeDescription.setText(recipe.getDescription());
+        //recipePrice.setText(Integer.toString(recipe.getPrice()));
+        //recipeTime.setText(Integer.toString(recipe.getTime()));
+        //recipeDescription.setText(recipe.getDescription());
+        //recipeInstructions.setText(recipe.getInstruction());
+        //recipeServings.setText(recipe.getServings() + " portioner");
+        //recipeInstructions.setText(getIngredientsList(recipe));
+    }
+
+    private String getIngredientsList(Recipe recipe){
+        List<Ingredient> ingredients = new ArrayList<>();
+        String ingredientsString = "";
+        for(Ingredient ingredient : recipe.getIngredients()){
+            ingredientsString = ingredientsString + "\n" + ingredient.getAmount() + " " + ingredient.getUnit() + " " + ingredient.getName();
+        }
+        System.out.println(ingredientsString);
+        return ingredientsString;
     }
 
     private void updateRecipeList(){

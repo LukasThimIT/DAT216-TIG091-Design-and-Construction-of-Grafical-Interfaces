@@ -51,10 +51,9 @@ public class RecipeListItem extends AnchorPane {
         searchResultName.setText(recipe.getName());
         searchResultFlag.setImage(parentController.getCuisineFlag(recipe.getCuisine()));
         searchResultDifficulty.setImage(parentController.getDifficulty(recipe.getDifficulty()));
-        System.out.println(recipe.getDifficulty());
         searchResultIngredient.setImage(parentController.getIngredient(recipe.getMainIngredient()));
-        searchResultPrice.setText(Integer.toString(recipe.getPrice()));
-        searchResultTime.setText(Integer.toString(recipe.getTime()));
+        searchResultPrice.setText(Integer.toString(recipe.getPrice()) + " kr");
+        searchResultTime.setText(Integer.toString(recipe.getTime()) + " minuter");
         searchResultDescription.setText(recipe.getDescription());
     }
 }
