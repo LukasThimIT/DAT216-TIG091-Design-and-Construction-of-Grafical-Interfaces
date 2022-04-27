@@ -1,17 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<fx:root onMouseClicked="#onClick" prefHeight="100.0" prefWidth="495.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root onMouseClicked="#onClick" prefHeight="100.0" prefWidth="508.0" styleClass="recipeListItem" stylesheets="@recipe_search.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="searchResultImg" fitHeight="76.0" fitWidth="78.0" layoutX="18.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="searchResultImg" fitHeight="90.0" fitWidth="90.0" layoutX="12.0" layoutY="5.0" pickOnBounds="true">
          <image>
             <Image url="@../../recipes/recipe1.jpg" />
          </image>
+         <effect>
+            <InnerShadow height="5.0" radius="2.0" width="5.0" />
+         </effect>
       </ImageView>
-      <Label fx:id="searchResultLabel" layoutX="108.0" layoutY="15.0" prefHeight="17.0" prefWidth="363.0" text="Stekt Ägg" />
+      <Label fx:id="searchResultName" layoutX="108.0" layoutY="4.0" prefHeight="17.0" prefWidth="363.0" styleClass="text-largerer" text="Stekt Ägg" />
+      <Label fx:id="searchResultDescription" alignment="TOP_LEFT" layoutX="109.0" layoutY="58.0" prefHeight="40.0" prefWidth="363.0" styleClass="text-normal" text="Hej" wrapText="true" />
+      <ImageView fx:id="searchResultIngredient" fitHeight="20.0" fitWidth="20.0" layoutX="108.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/icon_main_veg.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="searchResultDifficulty" fitHeight="20.0" fitWidth="60.0" layoutX="139.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/icon_difficulty_hard.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="searchResultTime" layoutX="214.0" layoutY="34.0" prefHeight="20.0" prefWidth="60.0" styleClass="text-smaller" text="50 minuter" />
+      <Label fx:id="searchResultPrice" layoutX="290.0" layoutY="35.0" prefHeight="20.0" prefWidth="50.0" styleClass="text-smaller" text="22 kr" />
+      <ImageView fx:id="searchResultFlag" fitHeight="25.0" fitWidth="35.0" layoutX="62.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/icon_flag_sweden.png" />
+         </image>
+      </ImageView>
    </children>
 </fx:root>

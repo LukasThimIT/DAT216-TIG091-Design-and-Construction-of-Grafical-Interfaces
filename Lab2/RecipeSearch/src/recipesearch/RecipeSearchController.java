@@ -14,10 +14,12 @@ import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import se.chalmers.ait.dat215.lab2.Recipe;
@@ -44,9 +46,18 @@ public class RecipeSearchController implements Initializable {
     @FXML private Label timeSliderLabel;
     @FXML private Label recipeDetailsLabel;
     @FXML private ImageView recipeDetailsImage;
+    @FXML private ImageView closeImageView;
     @FXML private SplitPane searchPane;
     @FXML private AnchorPane detailPane;
     @FXML private SplitPane recipeSearchSplitPane;
+    @FXML private ImageView recipeDifficultyImg;
+    @FXML private ImageView recipeTimeImg;
+    @FXML private ImageView recipeIngredientImg;
+    @FXML private ImageView recipeFlagImg;
+    @FXML private Label recipeTime;
+    @FXML private Label recipePrice;
+    @FXML private Label recipeDescription;
+    @FXML private TextArea recipeInstructions;
 
         @FXML
         public void closeRecipeView () {
@@ -60,6 +71,28 @@ public class RecipeSearchController implements Initializable {
             detailPane.toFront();
         }
 
+        @FXML
+        public void closeButtonMouseEntered(){
+            closeImageView.setImage(new Image(getClass().getClassLoader().getResourceAsStream(
+            "RecipeSearch/resources/icon_close_hover.png")));
+        }
+        
+        @FXML
+        public void closeButtonMousePressed(){           
+            closeImageView.setImage(new Image(getClass().getClassLoader().getResourceAsStream(
+            "RecipeSearch/resources/icon_close_pressed.png")));
+        }
+        
+        @FXML
+        public void closeButtonMouseExited(){
+            closeImageView.setImage(new Image(getClass().getClassLoader().getResourceAsStream(
+            "RecipeSearch/resources/icon_close.png")));
+        } 
+
+        @FXML
+        public void mouseTrap(Event event){
+            event.consume();
+        } 
     private Map<String, RecipeListItem> recipeListItemMap = new HashMap<String, RecipeListItem>();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -281,10 +314,110 @@ public class RecipeSearchController implements Initializable {
         cuisineBox.setButtonCell(cellFactory.call(null));
         cuisineBox.setCellFactory(cellFactory);
     }
+    
+    public Image getCuisineFlag(String cuisine) {
+        String iconPath;
+        switch(cuisine){
+            case "Sverige":
+                iconPath = "RecipeSearch/resources/icon_flag_sweden.png";
+                return new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+            case "Grekland":
+                iconPath = "RecipeSearch/resources/icon_flag_greece.png";
+                return new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+            case "Indien":
+                iconPath = "RecipeSearch/resources/icon_flag_india.png";
+                return new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+            case "Asien":
+                iconPath = "RecipeSearch/resources/icon_flag_asia.png";
+                return new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+            case "Afrika":
+                iconPath = "RecipeSearch/resources/icon_flag_africa.png";
+                return new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+            case "Frankrike":
+                iconPath = "RecipeSearch/resources/icon_flag_france.png";
+                return new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+            default:
+                iconPath = "RecipeSearch/resources/icon_flag_sweden.png";
+                return new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+        }
+    }
+
+    public Image getDifficulty(String difficulty) {
+        String iconPath;
+        switch(difficulty){
+            case "Lätt":
+                iconPath = "RecipeSearch/resources/icon_difficulty_easy.png";
+                return new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+            case "Mellan":
+                iconPath = "RecipeSearch/resources/icon_difficulty_medium.png";
+                return new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+            case "Svår":
+                iconPath = "RecipeSearch/resources/icon_difficulty_hard.png";
+                return new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+            default:
+                iconPath = "RecipeSearch/resources/icon_flag_india.png";
+                return new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+        }
+    }
+    public Image getIngredient(String difficulty) {
+        String iconPath;
+        switch(difficulty){
+            case "Kött":
+                iconPath = "RecipeSearch/resources/icon_main_meat.png";
+                return new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+            case "Fisk":
+                iconPath = "RecipeSearch/resources/icon_main_fish.png";
+                return new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+            case "Kyckling":
+                iconPath = "RecipeSearch/resources/icon_main_chicken.png";
+                return new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+            case "Vegetariskt":
+                iconPath = "RecipeSearch/resources/icon_main_veg.png";
+                return new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+            default:
+                iconPath = "RecipeSearch/resources/icon_flag_india.png";
+                return new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+        }
+    }
+
+    public Image getSquareImage(Image image){
+
+        int x = 0;
+        int y = 0;
+        int width = 0;
+        int height = 0;
+    
+        if(image.getWidth() > image.getHeight()){
+            width = (int) image.getHeight();
+            height = (int) image.getHeight();
+            x = (int)(image.getWidth() - width)/2;
+            y = 0;
+        }
+    
+        else if(image.getHeight() > image.getWidth()){
+            width = (int) image.getWidth();
+            height = (int) image.getWidth();
+            x = 0;
+            y = (int) (image.getHeight() - height)/2;
+        }
+    
+        else{
+            //Width equals Height, return original image
+            return image;
+        }
+        return new WritableImage(image.getPixelReader(), x, y, width, height);
+    }
 
     private void populateRecipeDetailView(Recipe recipe){
-        recipeDetailsLabel.setText(recipe.getName());
         recipeDetailsImage.setImage(recipe.getFXImage());
+        recipeDetailsLabel.setText(recipe.getName());
+        recipeFlagImg.setImage(getCuisineFlag(recipe.getCuisine()));
+        recipeDifficultyImg.setImage(getDifficulty(recipe.getDifficulty()));
+        recipeIngredientImg.setImage(getIngredient(recipe.getMainIngredient()));
+        System.out.println(Integer.toString(recipe.getPrice()));
+        recipePrice.setText(Integer.toString(recipe.getPrice()));
+        recipeTime.setText(Integer.toString(recipe.getTime()));
+        recipeDescription.setText(recipe.getDescription());
     }
 
     private void updateRecipeList(){

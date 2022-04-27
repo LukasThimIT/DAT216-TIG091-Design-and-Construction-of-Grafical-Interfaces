@@ -15,7 +15,13 @@ public class RecipeListItem extends AnchorPane {
     private Recipe recipe;
 
     @FXML private ImageView searchResultImg;
-    @FXML private Label searchResultLabel;
+    @FXML private Label searchResultName;
+    @FXML private Label searchResultDescription;
+    @FXML private Label searchResultPrice;
+    @FXML private Label searchResultTime;
+    @FXML private ImageView searchResultFlag;
+    @FXML private ImageView searchResultDifficulty;
+    @FXML private ImageView searchResultIngredient;
 
     @FXML
     protected void onClick(Event event){
@@ -24,6 +30,7 @@ public class RecipeListItem extends AnchorPane {
         parentController.openRecipeView(recipe);
     }
 
+        
     public RecipeListItem(Recipe recipe, RecipeSearchController recipeSearchController){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("recipe_listitem.fxml"));
         fxmlLoader.setRoot(this);
@@ -41,6 +48,13 @@ public class RecipeListItem extends AnchorPane {
         this.parentController = recipeSearchController;
 
         searchResultImg.setImage(recipe.getFXImage());
-        searchResultLabel.setText(recipe.getName());
+        searchResultName.setText(recipe.getName());
+        searchResultFlag.setImage(parentController.getCuisineFlag(recipe.getCuisine()));
+        searchResultDifficulty.setImage(parentController.getDifficulty(recipe.getDifficulty()));
+        System.out.println(recipe.getDifficulty());
+        searchResultIngredient.setImage(parentController.getIngredient(recipe.getMainIngredient()));
+        searchResultPrice.setText(Integer.toString(recipe.getPrice()));
+        searchResultTime.setText(Integer.toString(recipe.getTime()));
+        searchResultDescription.setText(recipe.getDescription());
     }
 }
