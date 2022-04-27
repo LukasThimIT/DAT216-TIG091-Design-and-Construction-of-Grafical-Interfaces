@@ -418,16 +418,16 @@ public class RecipeSearchController implements Initializable {
         recipeFlagImg.setImage(getCuisineFlag(recipe.getCuisine()));
         recipeDifficultyImg.setImage(getDifficulty(recipe.getDifficulty()));
         recipeIngredientImg.setImage(getIngredient(recipe.getMainIngredient()));
-        //recipePrice.setText(Integer.toString(recipe.getPrice()));
-        //recipeTime.setText(Integer.toString(recipe.getTime()));
-        //recipeDescription.setText(recipe.getDescription());
-        //recipeInstructions.setText(recipe.getInstruction());
-        //recipeServings.setText(recipe.getServings() + " portioner");
-        //recipeInstructions.setText(getIngredientsList(recipe));
+        recipePrice.setText(Integer.toString(recipe.getPrice()) + " kr");
+        recipeTime.setText(Integer.toString(recipe.getTime()) + " minuter");
+        recipeDescription.setText(recipe.getDescription());
+        recipeInstructions.setText(recipe.getInstruction());
+        recipeServings.setText(recipe.getServings() + " portioner");
+        recipeIngredients.setText(getIngredientsList(recipe));
+        //System.out.println(getIngredientsList(recipe));
     }
 
     private String getIngredientsList(Recipe recipe){
-        List<Ingredient> ingredients = new ArrayList<>();
         String ingredientsString = "";
         for(Ingredient ingredient : recipe.getIngredients()){
             ingredientsString = ingredientsString + "\n" + ingredient.getAmount() + " " + ingredient.getUnit() + " " + ingredient.getName();
